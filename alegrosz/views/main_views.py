@@ -1,8 +1,14 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_from_directory
 
 from alegrosz.dbs.dbs import get_db
+from alegrosz.utils.utils import upload_path
 
 main_bp = Blueprint('main', __name__, url_prefix="/")
+
+
+@main_bp.route("/uploads/<filename>")
+def uploads(filename):
+    return send_from_directory(upload_path, filename)
 
 
 @main_bp.route('/')
