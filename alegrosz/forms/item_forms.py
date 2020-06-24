@@ -3,12 +3,14 @@ from flask_wtf.file import FileAllowed
 from wtforms import StringField, TextAreaField, FileField, SubmitField, SelectField
 from wtforms.validators import InputRequired, DataRequired, Length
 
+from alegrosz.forms.price_field import PriceField
+
 
 class ItemForm(FlaskForm):
     title = StringField("Title", validators=[InputRequired("Input is required!"), DataRequired("Data is required!"),
                                              Length(min=5, max=20,
                                                     message="Input must be between 5 and 20 characters long.")])
-    price = StringField("Price")
+    price = PriceField("Price")
     description = TextAreaField("Description",
                                 validators=[InputRequired("Input is required!"), DataRequired("Data is required!"),
                                             Length(min=5, max=40,

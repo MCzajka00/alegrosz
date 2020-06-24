@@ -77,8 +77,6 @@ def add_item():
         conn.commit()
         flash(f"Item {form.title.data} has been successfully submitted.", "success")
         return redirect(url_for("main.home"))
-    if form.errors:
-        flash(f"{form.errors}", "danger")
     return render_template("new_item.html", form=form)
 
 
@@ -127,8 +125,6 @@ def edit_item(item_id):
         form.description.data = good["description"]
         form.price.data = good["price"]
 
-        if form.errors:
-            flash(f"{form.errors}", "danger")
         return render_template("edit_item.html", form=form, item=good)
 
 
