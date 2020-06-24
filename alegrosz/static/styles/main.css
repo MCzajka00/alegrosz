@@ -5,3 +5,9 @@
 .card-img-top {
 object-fir: cover;
 }
+a:hover{
+    text-decoration: none;
+}
+.delete-form {
+    display: inline;
+}
