@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect, render_template, flash, url_for
 from flask_wtf.file import FileRequired
 
 from alegrosz.dbs.dbs import get_db
+from alegrosz.forms.comment_forms import NewCommentForm
 from alegrosz.forms.item_forms import ItemForm, NewItemForm, DeleteItemForm, EditItemForm
 from alegrosz.utils.utils import save_image_upload
 
@@ -35,9 +36,18 @@ def item(item_id):
         good = {}
 
     if good:
+        comments_from_db = c.execute("""SELECT content FROM comments
+        WHERE item_id = ? ORDER BY id DESC""", (item_id,))
+
+        comments = [{"content": row[0]} for row in comments_from_db]
+
+        comment_form = NewCommentForm()
+        comment_form.item_id.data = item_id
+
         delete_item_form = DeleteItemForm()
 
-        return render_template("item.html", item=good, deleteItemForm=delete_item_form)
+        return render_template("item.html", item=good, deleteItemForm=delete_item_form, comments=comments,
+                               commentForm=comment_form)
     return redirect(url_for('main.home'))
 
 

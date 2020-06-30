@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
+{% from '_error_messages.html' import error_messages, field_error_messages%}
 {% block title %}
 Edit {{ item.title }}
 {% endblock %}
-{# TODO dołożyć obsługę błędów #}
 {% block content %}
 <div class="row">
     <div class="col-lg-7 offset-lg-2 my-5">
@@ -11,21 +11,26 @@ Edit {{ item.title }}
         <form action="" method="post" enctype="multipart/form-data">
 <!--            enctype słuzy do poinformowania serwera ze request przyjdzie w wielu czesciach -->
             {{ form.hidden_tag() }}
+            {{ error_messages(form.errors) }}
             <div class="form-group">
                 {{ form.title.label }}
                 {{ form.title(class="form-control") }}
+                {{ field_error_messages(form.title) }}
             </div>
             <div class="form-group">
                 {{ form.price.label }}
                 {{ form.price(class="form-control") }}
+                {{ field_error_messages(form.price) }}
             </div>
             <div class="form-group">
                 {{ form.description.label }}
                 {{ form.description(class="form-control", rows="3") }}
+                {{ field_error_messages(form.description) }}
             </div>
             <div class="form-group">
                 {{ form.image.label }}
                 {{ form.image }}
+                {{ field_error_messages(form.image) }}
             </div>
             {{ form.submit(class="btn btn-primary form-control") }}
         </form>

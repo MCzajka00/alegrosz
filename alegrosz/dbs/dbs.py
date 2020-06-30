@@ -12,4 +12,5 @@ def get_db():
         db_path = os.path.join(db_abs_path, 'alegrosz.db')
 
         db = g._database = sqlite3.connect(db_path)
+    #     bierzemy sqlite łączymy się z nim i podajemy ścieżkę z którym ma sie połączyć
     return db

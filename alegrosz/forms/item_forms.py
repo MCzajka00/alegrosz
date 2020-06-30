@@ -3,6 +3,7 @@ from flask_wtf.file import FileAllowed
 from wtforms import StringField, TextAreaField, FileField, SubmitField, SelectField
 from wtforms.validators import InputRequired, DataRequired, Length
 
+from alegrosz.forms.belongs_to_other_field_option import BelongsToOtherFieldOption
 from alegrosz.forms.price_field import PriceField
 
 
@@ -19,7 +20,9 @@ class ItemForm(FlaskForm):
 
 
 class NewItemForm(ItemForm):
-    category = SelectField("Category", coerce=int)
+    category = SelectField("Category", coerce=int,
+                           validators=[BelongsToOtherFieldOption(table="subcategories", belongs_to="category",
+                                                                 message="Subcategory does not belong to that category.")])
     subcategory = SelectField("Subcategory", coerce=int)
     submit = SubmitField("Submit")
 
