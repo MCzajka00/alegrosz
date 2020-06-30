@@ -4,6 +4,8 @@ from flask import Flask, g
 def create_app():
     alegrosz = Flask(__name__)
     alegrosz.config['SECRET_KEY'] = b'S\xdfCf\xee\xf0\x8d\xf2\xfb\xdaWA"6\xc4\x8f'
+    alegrosz.config['RECAPTCHA_PUBLIC_KEY'] = "6LeGsKsZAAAAAPMUPOjVfTDPwCYQFQsDvfGZCU7C"
+    alegrosz.config['RECAPTCHA_PRIVATE_KEY'] = "6LeGsKsZAAAAALQHAvkTcEVXhurm4wbxXj7-CwRY"
 
     from alegrosz.views import main_bp
     from alegrosz.views import item_bp

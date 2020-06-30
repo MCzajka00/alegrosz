@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileAllowed
 from wtforms import StringField, TextAreaField, FileField, SubmitField, SelectField
 from wtforms.validators import InputRequired, DataRequired, Length
@@ -17,6 +17,7 @@ class ItemForm(FlaskForm):
                                             Length(min=5, max=40,
                                                    message="Input must be between 5 and 40 characters long.")])
     image = FileField("Image", validators=[FileAllowed(["jpg", "jpeg", "png"], "Images only")])
+    recaptcha = RecaptchaField()
 
 
 class NewItemForm(ItemForm):
