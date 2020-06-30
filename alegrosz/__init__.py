@@ -8,10 +8,12 @@ def create_app():
     from alegrosz.views import main_bp
     from alegrosz.views import item_bp
     from alegrosz.views import comment_bp
+    from alegrosz.views import category_bp
 
     alegrosz.register_blueprint(main_bp)
     alegrosz.register_blueprint(item_bp)
     alegrosz.register_blueprint(comment_bp)
+    alegrosz.register_blueprint(category_bp)
 
     return alegrosz
 

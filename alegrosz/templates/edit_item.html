@@ -8,6 +8,7 @@ Edit {{ item.title }}
     <div class="col-lg-7 offset-lg-2 my-5">
         <h1>Edit item: <a href="{{ url_for('item.item', item_id=item.id) }}">{{ item.title }}</a></h1>
         <hr>
+<!--        #TODO zrobić edycję categorii tak samo jak do subcategory-->
         <form action="" method="post" enctype="multipart/form-data">
 <!--            enctype słuzy do poinformowania serwera ze request przyjdzie w wielu czesciach -->
             {{ form.hidden_tag() }}
@@ -36,4 +37,8 @@ Edit {{ item.title }}
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='scripts/subcategory.js') }}"></script>
 {% endblock %}
