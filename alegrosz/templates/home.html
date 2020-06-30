@@ -9,7 +9,7 @@ Welcome
 <div class="row">
     <div class="col-lg-3">
         <div class="my-4">
-            <form action="{{ url_for('main.home') }}" method="get">
+            <form class="filter-form" action="{{ url_for('main.home') }}" method="get">
                 <div class="form-group">
                     {{ form.title.label }}
                     {{ form.title(class="form-control") }}

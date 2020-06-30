@@ -37,8 +37,12 @@ def home():
         INNER JOIN subcategories AS s ON i.subcategory_id = s.id
     """
 
-    if form.validate():
-
+    try:
+        is_ajax = int(request.args["ajax"])
+    except:
+        is_ajax = 0
+    # TODO check why form.validate doesnt work with ajax
+    if True:
         filter_queries = []
         parameters = []
 
@@ -82,5 +86,6 @@ def home():
             "subcategory": row[6]
         }
         items.append(item)
-
+    if is_ajax:
+        return render_template('_items.html', items=items)
     return render_template('home.html', items=items, form=form)

@@ -1,0 +1,34 @@
+{% if items %}
+{% for item in items %}
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <div class="embed-responsive embed-responsive-16by9">
+            <a href="{{ url_for('item.item', item_id=item.id) }}">
+                <img class="card-img-top embed-responsive-item"
+                     src="{% if item.image %} {{ url_for('main.uploads', filename=item.image) }} {% else %} {{ url_for('static', filename='images/placeholder.png') }}{% endif %}"
+                     alt="">
+            </a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="">{{ item.title }}</a>
+            </h4>
+            <h5>{{ "%.2f PLN" | format(item.price) }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">
+                {{ item.category }} -> {{ item.subcategory }}
+            </small>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<h1 class="offset-lg-3">No items to show.</h1>
+{% endif %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='scripts/subcategory.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/filter.js') }}"></script>
+{% endblock %}
